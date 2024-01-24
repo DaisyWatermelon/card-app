@@ -12,7 +12,7 @@ export default function Card2() {
         <div style={{left: 170, top: 21, position: 'absolute', color: 'white', fontSize: 20, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>$26,123.21</div>
             <div style={{position: 'relative'}}>
                 <div style={{left: 300, top: -35, position: 'absolute', background:'#FF0000',colorhttps: 'red', fontSize: 20, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>1.50%</div>
-                <div style={{width: '100%', height: '100%', background: '/green.png', borderRadius: 4, border:'5px solid rgba(0, 0, 0, 0.3)'}}></div>
+                <div style={{width: '100%', height: '100%', background: '/red.png', borderRadius: 4, border:'5px solid rgba(0, 0, 0, 0.3)'}}></div>
             </div>
         </div>
     </div>

@@ -12,8 +12,9 @@ export default function Card() {
         <div style={{left: 100, top: 21, position: 'absolute', color: 'white', fontSize: 20, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>BTC</div>
         <div style={{left: 170, top: 21, position: 'absolute', color: 'white', fontSize: 20, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>$26,123.21</div>
             <div style={{position: 'relative'}}>
+            <div style={{width: '100%', height: '100%', backgroundImage: 'url(${process.env.PUBLIC_URL}/green.png',backgroundSize: 'cover', borderRadius: 4, border:'5px solid rgba(0, 0, 0, 0.3)'}}></div>
                 <div style={{left: 300, top: -35, position: 'absolute', background:'#24FF00',colorhttps: 'green', fontSize: 20, fontFamily: 'Inter', fontWeight: '500', wordWrap: 'break-word'}}>1.50%</div>
-                <div style={{width: '100%', height: '100%', background: '/green.png', borderRadius: 4, border:'5px solid rgba(0, 0, 0, 0.3)'}}></div>
+                
             </div>
         </div>
         
