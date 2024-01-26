@@ -29,14 +29,14 @@ function App() {
   //   addCards(<Card1/>);
   // };
   const removeCard = useStore(state => state.removeCard);
-  // const getCards = useStore(state => state.count);
+  const getCards = useStore(state => state.count);
   return (
     // <Router>
       <div className="App">
         <header className="App-header">
           <Card1 />
           <Card2 />
-          <h1> my favourite card</h1>
+          <h1> my favourite cards have {getCards}</h1>
           <input ref={inputRef} />
           <button onClick={addCards}>Add card 1</button>
           {cards.map((card) =>(
