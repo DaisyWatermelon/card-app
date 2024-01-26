@@ -10,16 +10,33 @@ import { createStore } from 'zustand';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Card from './Card1';
 
-const useStore = create(set => ({
-  count: 0,
-  cards: [], // To store favorited cards
-  addCard: (card) => set(state => ({cards: [...state.cards, card] })),
-  removeCard: () => set(state => ({ count: state.count - 1 })),
-}));
+// Create component of the store
+let store = (set) => ({
+  cards:[],
+  addCards: (card) => {
+    set((state) => ({
+      cards: [...state.cards, card],
+    }));
+  },
+});
+
+// presist the created state
+store = persist(store, {name: "basket"})
+
+// create the store
+// create the store
+const useStore = create(store);
+
+// const useStore = create(set => ({
+//   count: 0,
+//   cards: [], // To store favorited cards
+//   addCard: (card) => set(state => ({cards: [...state.cards, card] })),
+//   removeCard: () => set(state => ({ count: state.count - 1 })),
+// }));
 
 function App() {
   const cards = useStore((state) => state.cards);
-  const addCards = useStore(state => state.addCard);
+  const addCards = useStore(state => state.addCards);
   const inputRef = useRef();
   const addCard = () =>{
     addCards(inputRef.current.value);
