@@ -46,9 +46,7 @@ function App() {
       const API_KEY = '0cb61b43-fe49-42ce-8e3a-e030fb104f24';
       const API_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
       const limitNum = 10;
-      const response = await fetch(
-        `${API_URL}?CMC_PRO_API_KEY=${API_KEY}&limit=${limitNum}`
-      );
+      const response = await fetch('http://localhost:5000/api/cards');
 
       if(!response.ok){
         throw new Error("Failed to fetch data from API");
@@ -74,10 +72,29 @@ function App() {
     fetchData();
   }, []);
 
+  // const addCard = () => {
+  //   addCards(inputRef.current.value);
+  //   inputRef.current.value = "";
+  // };
+
+  // with server mongoDB
   const addCard = () => {
-    addCards(inputRef.current.value);
-    inputRef.current.value = "";
+    const cardName = inputRef.current.value;
+    fetch('http://localhost:5000/api/cards', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: cardName,
+        symbol: 'Custom Symbol', // You can customize this
+        price: 0, // You can customize this
+      }),
+    });
+    inputRef.current.value = '';
+    fetchData();
   };
+
 
   const removeCard = useStore(state => state.removeCard);
   const getCards = useStore(state => state.count);
@@ -97,7 +114,7 @@ function App() {
           {cards.map((card) =>(
             <p key={card}>{cards}</p>
           ))}
-          <button onClick={removeCard}>Remove card 2</button>
+          <button onClick={removeCard}>Remove card 1</button>
           {cards.map((card) =>(
             <p key={card}>{cards}</p>
           ))}
