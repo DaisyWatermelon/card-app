@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {create} from 'zustand'
 import {persist} from "zustand/middleware"
 import './App.css';
@@ -8,7 +8,7 @@ import Card2 from './Card2'
 //import myToken from './myToken';
 import { createStore } from 'zustand';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Card from './Card1';
+
 
 // Create component of the store
 let store = (set) => ({
@@ -38,13 +38,47 @@ function App() {
   const cards = useStore((state) => state.cards);
   const addCards = useStore(state => state.addCards);
   const inputRef = useRef();
-  const addCard = () =>{
+
+  // Fetch the API
+  const fetchData = async async =>{
+    try {
+      // Coin Market Cap API and key
+      const API_KEY = '0cb61b43-fe49-42ce-8e3a-e030fb104f24';
+      const API_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
+      const limitNum = 10;
+      const response = await fetch(
+        `${API_URL}?CMC_PRO_API_KEY=${API_KEY}&limit=${limitNum}`
+      );
+
+      if(!response.ok){
+        throw new Error("Failed to fetch data from API");
+      }
+      const data = await response.json();
+  
+      // create card component
+      const newCards = data.data.map((crypto) => (
+        <div key={crypto.id}>
+          <h3>{crypto.name}</h3>
+          <p>Symbol: {crypto.symbol}</p>
+          <p>Price: ${crypto.quote.USD.price}</p>
+        </div>
+      ));
+
+      addCards(newCards);
+    } catch(error){
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const addCard = () => {
     addCards(inputRef.current.value);
     inputRef.current.value = "";
   };
-  // const addCard = () =>{
-  //   addCards(<Card1/>);
-  // };
+
   const removeCard = useStore(state => state.removeCard);
   const getCards = useStore(state => state.count);
   return (
@@ -56,8 +90,8 @@ function App() {
           <h1> my favourite cards have {getCards}</h1>
           <input ref={inputRef} />
           <button onClick={addCards}>Add card 1</button>
-          {cards.map((card) =>(
-            <p key={card}>{card}</p>
+          {cards.map((card, index) =>(
+            <p key={index}>{card}</p>
           ))}
           <button onClick={addCards}>Add card 2</button>
           {cards.map((card) =>(
