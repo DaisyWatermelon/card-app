@@ -11,7 +11,7 @@ const useStore = create(set => ({
   count: 0,
   cards: [], // To store favorited cards
   addCard: () => set(state => ({ count: state.count + 1 })),
-  //removeCard: () => set(state => ({ count: state.count - 1 })),
+  removeCard: () => set(state => ({ count: state.count - 1 })),
 }));
 
 // function CardCounter(){
@@ -59,6 +59,7 @@ const useStore = create(set => ({
 
 function App() {
   const addCard = useStore(state => state.addCard);
+  const removeCard = useStore(state => state.removeCard);
   const getCards = useStore(state => state.count);
   return (
     // <Router>
@@ -73,6 +74,8 @@ function App() {
           <h1>{getCards} my favourite card</h1>
           <button onClick={addCard}><Card1 /></button>
           <button onClick={addCard}><Card2 /></button>
+          <button onClick={removeCard}>Remove Card1</button>
+          <button onClick={removeCard}>Remove Card2</button>
 
         </header>
       </div>
