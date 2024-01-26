@@ -91,19 +91,19 @@ function App() {
           <input ref={inputRef} />
           <button onClick={addCard}>Add card 1</button>
           {cards.map((card, index) =>(
-            <p key={index}>{card}</p>
+            <p key={index}>{cards}</p>
           ))}
           <button onClick={addCard}>Add card 2</button>
           {cards.map((card) =>(
-            <p key={card}>{card}</p>
+            <p key={card}>{cards}</p>
           ))}
           <button onClick={removeCard}>Remove card 2</button>
           {cards.map((card) =>(
-            <p key={card}>{card}</p>
+            <p key={card}>{cards}</p>
           ))}
           <button onClick={removeCard}>Remove card 2</button>
           {cards.map((card) =>(
-            <p key={card}>{card}</p>
+            <p key={card}>{cards}</p>
           ))}
           {/* <button onClick={addCards}><Card2 /></button>
           <button onClick={removeCard}>Remove Card1</button>
