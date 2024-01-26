@@ -89,11 +89,11 @@ function App() {
           <Card2 />
           <h1> my favourite cards have {getCards}</h1>
           <input ref={inputRef} />
-          <button onClick={addCards}>Add card 1</button>
+          <button onClick={addCard}>Add card 1</button>
           {cards.map((card, index) =>(
             <p key={index}>{card}</p>
           ))}
-          <button onClick={addCards}>Add card 2</button>
+          <button onClick={addCard}>Add card 2</button>
           {cards.map((card) =>(
             <p key={card}>{card}</p>
           ))}
